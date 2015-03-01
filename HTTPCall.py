@@ -5,8 +5,12 @@ import config
 
 class HTTPCall(object):
     def __init__(self):
-        if config.access_token.isEmpty()
-        self.access_token = request_authentication()
+        # Determine user access token or assign standard test if not specified
+        if not config.access_token:
+            self.access_token = request_authentication()
+        else:
+            self.access_token = \
+                    'Shared/IDL:IceSess\/SessMgr:1\.0.IDL/Common/!ICESMS\/ACPCRTD!ICESMSLB\/CRT.LB!-0123456789012345678!123456!0!ABCDEFGHIJKLM!E2E-1'
 
     def request_authentication(self):
         '''
