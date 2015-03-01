@@ -120,3 +120,5 @@ class LeadPriceCalendar(object):
             assert tasks['lengthofstay'][1].count(',') < 5
         else:
             assert tasks['lengthofstay'][1].count(',') < 10
+
+        return '&'.join([task[0] for task in tasks.values() if task[1]])
