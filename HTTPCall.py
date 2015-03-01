@@ -29,7 +29,7 @@ class HTTPCall(object):
 
         # Request authentication
         data = urllib.urlencode(data)
-        request = urllib2.Request(config.sabre_url, data, headers)
+        request = urllib2.Request(config.auth_url, data, headers)
         response = json.loads(urllib2.urlopen(request).read())
 
         # Return access token
