@@ -1,15 +1,15 @@
 import HTTPCall
 
 class LeadPriceCalendar(object):
-    def __int__(self):
+    def __init__(self):
         self.tasks = {  \
-            'origin'                   : ('origin=', False), \
-            'destination'              : ('destination=', False),\
-            'lengthofstay'             : ('lengthofstay=', False),\
-            'departuredate'            : ('departuredate=', False),\
-            'minfare'                  : ('minfare=', False),\
-            'maxfare'                  : ('maxfare=', False),\
-            'pointofsalecountry'       : ('maxfare=', False)}
+            'origin'                   : ['origin=', False], \
+            'destination'              : ['destination=', False],\
+            'lengthofstay'             : ['lengthofstay=', False],\
+            'departuredate'            : ['departuredate=', False],\
+            'minfare'                  : ['minfare=', False],\
+            'maxfare'                  : ['maxfare=', False],\
+            'pointofsalecountry'       : ['maxfare=', False]}
 
         self.response = {}
 
@@ -91,14 +91,14 @@ class LeadPriceCalendar(object):
         Adding the user input to lengthofstay string 
         '''
         self.tasks['lengthofstay'][1] = True
-        self.tasks['lengthofstay'][0] + ','.join(length)
+        self.tasks['lengthofstay'][0] += ','.join(length)
 
     def departuredate(self, depart):
         '''
         Adding the user input to departuredate string 
         '''
         self.tasks['departuredate'][1] = True
-        self.tasks['departuredate'][0] + ','.join(depart)
+        self.tasks['departuredate'][0] += ','.join(depart)
 
     def minfare(self, minf):
         self.tasks['minfare'][1] = True
@@ -115,9 +115,9 @@ class LeadPriceCalendar(object):
     @HTTPCall.request_content
     def query(self):
         if tasks['departuredate'][1]:
-            assert tasks['lengthofstay'][1].count(',') < 5
+            assert tasks['lengthofstay'][0].count(',') < 5
         else:
-            assert tasks['lengthofstay'][1].count(',') < 10
+            assert tasks['lengthofstay'][0].count(',') < 10
 
         return '&'.join([task[0] for task in tasks.values() if task[1]])
 
