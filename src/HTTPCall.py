@@ -40,18 +40,17 @@ class HTTPCall(object):
         return response['access_token']
 
     def request_content(self, call):
-        def wrapper():
-            # Authenticated content setup
-            header = { \
-                    'Authorization': 'Bearer ' + str(self.access_token) \
-                    }
-            request = urllib2.Request( \
-                    config.sabre_url + call, \
-                    None,                    \
-                    header                   \
-                    )
+        # Authenticated content setup
+        header = { \
+                'Authorization': 'Bearer ' + str(self.access_token) \
+                }
+        request = urllib2.Request( \
+                config.sabre_url + call, \
+                None,                    \
+                header                   \
+                )
 
-            # Request authenticated content
-            result = urllib2.urlopen(request)
+        # Request authenticated content
+        result = urllib2.urlopen(request)
 
         return json.loads(result.read())
