@@ -19,6 +19,10 @@ class LeadPriceCalendar(object):
     def getTasks(self):
         print [task for task in self.tasks.values()]
 
+    def __gt__(self, other):
+        return self.response['FareInfo'][0] > \
+        other.response['FareInfo'][0]
+
     #############################
     #                           #
     #         RESPONSE          #
@@ -94,24 +98,24 @@ class LeadPriceCalendar(object):
 
     def destination(self, dest):
         '''
-        Adding the user input to destination string 
+        Adding the user input to destination string
         '''
         self.tasks['destination'][1] = True
         self.tasks['destination'][0] += dest
 
     def lengthofstay(self, length):
         '''
-        Adding the user input to lengthofstay string 
+        Adding the user input to lengthofstay string
         '''
         self.tasks['lengthofstay'][1] = True
-        self.tasks['lengthofstay'][0] += ','.join(length)
+        self.tasks['lengthofstay'][0] += ','.join([str(i) for i in length])
 
     def departuredate(self, depart):
         '''
-        Adding the user input to departuredate string 
+        Adding the user input to departuredate string
         '''
         self.tasks['departuredate'][1] = True
-        self.tasks['departuredate'][0] += ','.join(depart)
+        self.tasks['departuredate'][0] += depart
 
     def minfare(self, minf):
         self.tasks['minfare'][1] = True
