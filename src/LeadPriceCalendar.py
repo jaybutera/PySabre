@@ -1,19 +1,21 @@
 class LeadPriceCalendar(object):
     def __int__(self):
         self.tasks = {  \
-            'origin'        : ('origin=', False), \
-            'destination'   : ('destination=', False),\
-            'lengthofstay'  : ('lengthofstay=', False),\
-            'departuredate' : ('departuredate=', False),\
-            'minfare'       : ('minfare=', False),\
-            'maxfare'       : ('maxfare=', False)}
+            'origin'                   : ('origin=', False), \
+            'destination'              : ('destination=', False),\
+            'lengthofstay'             : ('lengthofstay=', False),\
+            'departuredate'            : ('departuredate=', False),\
+            'minfare'                  : ('minfare=', False),\
+            'maxfare'                  : ('maxfare=', False),\
+            'pointofsalecountry'       : ('maxfare=', False)}
+            
         self.response = {}
 
-    ###############################################
-    #                                             #
-    #             Response Functions              #
-    #                                             #
-    ###############################################
+    #############################
+    #                           #
+    #         RESPONSE          #
+    #                           #
+    #############################
 
     def origin_location(self):
         '''
@@ -60,65 +62,60 @@ class LeadPriceCalendar(object):
         Returns an array
         '''
         return self.response['Links']
-    '''
-    def shop_link(self):
-        return self.response['ShopLink']
-    def self(self):
-        return self.response['']
-    def link_template(self):
-        return self.response[]
-    '''
 
-    ###############################################
-    #                                             #
-    #              Request Functions              #
-    #                                             #
-    ###############################################
+    #############################
+    #                           #
+    #          REQUEST          #
+    #                           #
+    #############################
 
+    
     def origin(self, org):
         '''
         Adding the user input to origin string 
         '''
         self.tasks['origin'][1] = True
-        return 'origin=' + org
+        self.tasks['origin'][0] += org
 
     def destination(self, dest):
         '''
         Adding the user input to destination string 
         '''
         self.tasks['destination'][1] = True
-        return 'destination=' + dest
+        self.tasks['destination'][0] += dest
 
     def lengthofstay(self, length):
         '''
         Adding the user input to lengthofstay string 
         '''
         self.tasks['lengthofstay'][1] = True
-        return 'lengthofstay=' + ','.join(length)
+        self.tasks['lengthofstay'][0] + ','.join(length)
 
     def departuredate(self, depart):
         '''
         Adding the user input to departuredate string 
         '''
         self.tasks['departuredate'][1] = True
-        return 'departuredate=' + ','.join(depart)
+        self.tasks['departuredate'][0] + ','.join(depart)
 
     def minfare(self, minf):
         self.tasks['minfare'][1] = True
-        return minf
+        self.tasks['minfare'][0] += minf
 
     def maxfare(self, maxf):
         self.tasks['maxfare'][1] = True
-        return maxf
+        self.tasks['maxfare'][0] += maxf
 
     def pointofsalecountry(self, countryCode):
-        self.tasks[6] = True
-        return countryCode
+        self.tasks['pointofsalecountry'][1] = True
+        self.tasks['pointofsalecountry'][0] += countryCode
 
-    def call(self):
+    ######CALL FUNCTION#######
+
+    def leadCall(self):            
         if tasks['departuredate'][1]:
             assert tasks['lengthofstay'][1].count(',') < 5
         else:
             assert tasks['lengthofstay'][1].count(',') < 10
-
+	    
         return '&'.join([task[0] for task in tasks.values() if task[1]])
