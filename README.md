@@ -1,4 +1,4 @@
-## PySabre
+# PySabre
 #### A comprehensive python library for Sabre's REST API
 
 PySabre serves to provide Python users with an easy to use tool to access
@@ -8,7 +8,7 @@ Urllib(s).
 Best of all, no dependencies!
 
 An example call to the Leap Price Calendar API
-'''
+```python
 import PySabre.LeadPriceCalendar as LPC
 
 cal = LPC.LeadPriceCalendar()
@@ -19,4 +19,4 @@ cal.lengthofstay([3,2])
 
 # Return the JSON response, independent responses are also available from LPC's methods
 print cal.call()
-'''
+```
