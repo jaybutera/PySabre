@@ -2,6 +2,9 @@ import HTTPCall
 
 class LeadPriceCalendar(object):
     def __init__(self):
+        self.HandleREST = HTTPCall.HTTPCall()
+        self.HandleREST.request_authentication()
+
         self.tasks = {  \
             'origin'                   : ['origin=', False], \
             'destination'              : ['destination=', False],\
@@ -112,16 +115,16 @@ class LeadPriceCalendar(object):
         self.tasks['pointofsalecountry'][1] = True
         self.tasks['pointofsalecountry'][0] += countryCode
 
-    @HTTPCall.request_content
-    def query(self):
+    ### Call Function ###
+
+    def call(self):
         if tasks['departuredate'][1]:
             assert tasks['lengthofstay'][0].count(',') < 5
         else:
             assert tasks['lengthofstay'][0].count(',') < 10
 
-        return '&'.join([task[0] for task in tasks.values() if task[1]])
+        self.response = self.HandleREST( \
+                '&'.join([task[0] for task in tasks.values() if task[1]]))
 
-    ### Call Function ###
-
-    def call(self):
-        self.response = query()
+        # Return JSON content
+        return self.response
