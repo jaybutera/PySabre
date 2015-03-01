@@ -25,14 +25,16 @@ class LeadPriceCalendar(object):
     #                           #
     #############################
 
-    def origin_location(self):
+    def origin_response(self):
         '''
-        Returns a string
+        Returns the trip origin determined by a price calendar information
+        request.
         '''
         return self.response['OriginLocation']
-    def destination_location(self):
+    def destination_response(self):
         '''
-        Returns a string
+        Returns the trip destionation determined by a price calendar information
+        request.
         '''
         return self.response['DestinationLocation']
     def fare_info(self):
@@ -40,31 +42,37 @@ class LeadPriceCalendar(object):
         Returns an array
         '''
         return self.response['FareInfo']
+
     def lowest_fare(self):
         '''
         Returns a string
         '''
         return self.response['LowersFare']
+
     def currency_code(self):
         '''
         Returns a string
         '''
         return self.response['CurrencyCode']
+
     def lowerst_nonstop_fare(self):
         '''
         Returns a string
         '''
         return self.response['LowestNonStopFare']
+
     def departure_date_time(self):
         '''
         Returns a string
         '''
         return self.response['DepartureDateTime']
+
     def return_date_time(self):
         '''
         Returns a string
         '''
         return self.response['ReturnDateTime']
+
     def links(self):
         '''
         Returns an array
@@ -77,7 +85,6 @@ class LeadPriceCalendar(object):
     #                           #
     #############################
 
-    
     def origin(self, org):
         '''
         Adding the user input to origin string 
