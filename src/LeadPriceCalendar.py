@@ -16,6 +16,9 @@ class LeadPriceCalendar(object):
 
         self.response = {}
 
+    def getTasks(self):
+        print [task for task in self.tasks.values()]
+
     #############################
     #                           #
     #         RESPONSE          #

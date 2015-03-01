@@ -1,7 +1,7 @@
 clientID = ''
 password = ''
 
-auth_url  = ''
-sabre_url = ''
+auth_url  = 'https://api.sabre.com'
+sabre_url = 'https://api.sabre.com'
 
 access_token = ''

@@ -7,7 +7,7 @@ class HTTPCall(object):
     def __init__(self):
         # Determine user access token or assign standard test if not specified
         if not config.access_token:
-            self.access_token = request_authentication()
+            self.access_token = self.request_authentication()
         else:
             self.access_token = \
                     'Shared/IDL:IceSess\/SessMgr:1\.0.IDL/Common/!ICESMS\/ACPCRTD!ICESMSLB\/CRT.LB!-0123456789012345678!123456!0!ABCDEFGHIJKLM!E2E-1'
@@ -22,10 +22,10 @@ class HTTPCall(object):
         encodedPassword = base64.b64encode(config.password)
 
         encodedSecurityInfo = base64.b64encode( \
-                encodeUserInfo + ':' + encodedPassword)
+                encodedUserInfo + ':' + encodedPassword)
 
         # Authentication request setup
-        data = {'grant-type': 'client_credentials'}
+        data = {'grant_type': 'client_credentials'}
         headers = {                                                   \
                 'content-type' : 'application/x-www-form-urlencoded', \
                 'Authorization': 'Basic ' + encodedSecurityInfo       \
