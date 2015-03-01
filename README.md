@@ -29,5 +29,17 @@ For example, given two LPC objects cal1 and cal2:
 >>> True
 ```
 
+
 This metric is a convenient way to compare the lowest fare cost of two separate
 price calendars.
+
+
+PySabre holds close to the Sabre REST API, so [Sabre's
+documentation](https://developer.sabre.com/docs/read/REST_APIs) is a direct
+mapping to this library. Each task is an input request function, and the
+responses can be called by function or returned as a JSON object.
+```python
+>>> cal.call()
+>>> cal.originlocation()
+>>> 'ATL'
+```
