@@ -19,20 +19,26 @@ class LeadPriceCalendar(object):
     def getTasks(self):
         print [task for task in self.tasks.values()]
 
+    def __gt__(self, other):
+        return self.response['FareInfo'][0] > \
+        other.response['FareInfo'][0]
+
     #############################
     #                           #
     #         RESPONSE          #
     #                           #
     #############################
 
-    def origin_location(self):
+    def origin_response(self):
         '''
-        Returns a string
+        Returns the trip origin determined by a price calendar information
+        request.
         '''
         return self.response['OriginLocation']
-    def destination_location(self):
+    def destination_response(self):
         '''
-        Returns a string
+        Returns the trip destionation determined by a price calendar information
+        request.
         '''
         return self.response['DestinationLocation']
     def fare_info(self):
@@ -40,31 +46,37 @@ class LeadPriceCalendar(object):
         Returns an array
         '''
         return self.response['FareInfo']
+
     def lowest_fare(self):
         '''
         Returns a string
         '''
         return self.response['LowersFare']
+
     def currency_code(self):
         '''
         Returns a string
         '''
         return self.response['CurrencyCode']
+
     def lowerst_nonstop_fare(self):
         '''
         Returns a string
         '''
         return self.response['LowestNonStopFare']
+
     def departure_date_time(self):
         '''
         Returns a string
         '''
         return self.response['DepartureDateTime']
+
     def return_date_time(self):
         '''
         Returns a string
         '''
         return self.response['ReturnDateTime']
+
     def links(self):
         '''
         Returns an array
@@ -77,7 +89,6 @@ class LeadPriceCalendar(object):
     #                           #
     #############################
 
-    
     def origin(self, org):
         '''
         Adding the user input to origin string 
@@ -87,24 +98,24 @@ class LeadPriceCalendar(object):
 
     def destination(self, dest):
         '''
-        Adding the user input to destination string 
+        Adding the user input to destination string
         '''
         self.tasks['destination'][1] = True
         self.tasks['destination'][0] += dest
 
     def lengthofstay(self, length):
         '''
-        Adding the user input to lengthofstay string 
+        Adding the user input to lengthofstay string
         '''
         self.tasks['lengthofstay'][1] = True
-        self.tasks['lengthofstay'][0] += ','.join(length)
+        self.tasks['lengthofstay'][0] += ','.join([str(i) for i in length])
 
     def departuredate(self, depart):
         '''
-        Adding the user input to departuredate string 
+        Adding the user input to departuredate string
         '''
         self.tasks['departuredate'][1] = True
-        self.tasks['departuredate'][0] += ','.join(depart)
+        self.tasks['departuredate'][0] += depart
 
     def minfare(self, minf):
         self.tasks['minfare'][1] = True
