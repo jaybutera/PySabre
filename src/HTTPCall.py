@@ -1,12 +1,12 @@
 import json
 import urllib, urllib2
 import base64
-import example_config
+import config
 
 class HTTPCall(object):
     def __init__(self):
         # Determine user access token or assign standard test if not specified
-        if not example_config.access_token:
+        if not config.access_token:
             self.access_token = self.request_authentication()
         else:
             self.access_token = \
@@ -18,8 +18,8 @@ class HTTPCall(object):
         Returns user specific access token.
         '''
         # Initialization information
-        encodedUserInfo = base64.b64encode(example_config.clientID)
-        encodedPassword = base64.b64encode(example_config.password)
+        encodedUserInfo = base64.b64encode(config.clientID)
+        encodedPassword = base64.b64encode(config.password)
 
         encodedSecurityInfo = base64.b64encode( \
                 encodedUserInfo + ':' + encodedPassword)
@@ -33,7 +33,7 @@ class HTTPCall(object):
 
         # Request authentication
         data = urllib.urlencode(data)
-        request = urllib2.Request(example_config.auth_url, data, headers)
+        request = urllib2.Request(config.auth_url, data, headers)
         response = json.loads(urllib2.urlopen(request).read())
 
         # Return access token
@@ -45,7 +45,7 @@ class HTTPCall(object):
                 'Authorization': 'Bearer ' + str(self.access_token) \
                 }
         request = urllib2.Request( \
-                example_config.sabre_url + call, \
+                config.sabre_url + call, \
                 None,                    \
                 header                   \
                 )
