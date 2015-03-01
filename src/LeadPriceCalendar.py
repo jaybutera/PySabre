@@ -126,7 +126,7 @@ class LeadPriceCalendar(object):
         else:
             assert tasks['lengthofstay'][0].count(',') < 10
 
-        self.response = self.HandleREST( \
+        self.response = self.HandleREST( \ "/v1/shop/flights/fares"
                 '&'.join([task[0] for task in tasks.values() if task[1]]))
 
         # Return JSON content
