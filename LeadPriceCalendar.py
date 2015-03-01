@@ -9,6 +9,12 @@ class LeadPriceCalendar(object):
             'maxfare'       : ('maxfare=', False)}
         self.response = {}
 
+    ###############################################
+    #                                             #
+    #             Response Functions              #
+    #                                             #
+    ###############################################
+
     def origin_location(self):
         '''
         Returns a string
@@ -62,9 +68,13 @@ class LeadPriceCalendar(object):
     def link_template(self):
         return self.response[]
     '''
-    
-    '''
-    '''
+
+    ###############################################
+    #                                             #
+    #              Request Functions              #
+    #                                             #
+    ###############################################
+
     def origin(self, org):
         '''
         Adding the user input to origin string 
@@ -105,7 +115,7 @@ class LeadPriceCalendar(object):
         self.tasks[6] = True
         return countryCode
 
-    def leadCall(self):            
+    def call(self):
         if tasks['departuredate'][1]:
             assert tasks['lengthofstay'][1].count(',') < 5
         else:
