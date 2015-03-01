@@ -121,13 +121,13 @@ class LeadPriceCalendar(object):
     ### Call Function ###
 
     def call(self):
-        if tasks['departuredate'][1]:
-            assert tasks['lengthofstay'][0].count(',') < 5
+        if self.tasks['departuredate'][1]:
+            assert self.tasks['lengthofstay'][0].count(',') < 5
         else:
-            assert tasks['lengthofstay'][0].count(',') < 10
+            assert self.tasks['lengthofstay'][0].count(',') < 10
 
-        self.response = self.HandleREST( \ "/v1/shop/flights/fares"
-                '&'.join([task[0] for task in tasks.values() if task[1]]))
+        self.response = self.HandleREST.request_content( '/v1/shop/flights/fares?' + \
+                '&'.join([task[0] for task in self.tasks.values() if task[1]]))
 
         # Return JSON content
         return self.response

@@ -34,6 +34,7 @@ class HTTPCall(object):
         # Request authentication
         data = urllib.urlencode(data)
         request = urllib2.Request(config.auth_url, data, headers)
+        print request.header_items()
         response = json.loads(urllib2.urlopen(request).read())
 
         # Return access token
