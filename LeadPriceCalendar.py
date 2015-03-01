@@ -6,7 +6,7 @@ class LeadPriceCalendar(object):
             'lengthofstay'  : ('lengthofstay=', False)\
             'departuredate' : ('departuredate=', False)\
             'minfare'       : ('minfare=', False)\
-            'maxfare'       : ('maxfare=', False)\}
+            'maxfare'       : ('maxfare=', False)}
 
     def origin(self, org):
         '''
