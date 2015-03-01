@@ -7,7 +7,64 @@ class LeadPriceCalendar(object):
             'departuredate' : ('departuredate=', False)\
             'minfare'       : ('minfare=', False)\
             'maxfare'       : ('maxfare=', False)}
+        self.response = {}
 
+    def origin_location(self):
+        '''
+        Returns a string
+        '''
+        return self.response['OriginLocation']
+    def destination_location(self):
+        '''
+        Returns a string
+        '''
+        return self.response['DestinationLocation']
+    def fare_info(self):
+        '''
+        Returns an array
+        '''
+        return self.response['FareInfo']
+    def lowest_fare(self):
+        '''
+        Returns a string
+        '''
+        return self.response['LowersFare']
+    def currency_code(self):
+        '''
+        Returns a string
+        '''
+        return self.response['CurrencyCode']
+    def lowerst_nonstop_fare(self):
+        '''
+        Returns a string
+        '''
+        return self.response['LowestNonStopFare']
+    def departure_date_time(self):
+        '''
+        Returns a string
+        '''
+        return self.response['DepartureDateTime']
+    def return_date_time(self):
+        '''
+        Returns a string
+        '''
+        return self.response['ReturnDateTime']
+    def links(self):
+        '''
+        Returns an array
+        '''
+        return self.response['Links']
+    '''
+    def shop_link(self):
+        return self.response['ShopLink']
+    def self(self):
+        return self.response['']
+    def link_template(self):
+        return self.response[]
+    '''
+    
+    '''
+    '''
     def origin(self, org):
         '''
         Adding the user input to origin string 
@@ -53,5 +110,3 @@ class LeadPriceCalendar(object):
             assert tasks['lengthofstay'][1].count(',') < 5
         else:
             assert tasks['lengthofstay'][1].count(',') < 10
-
-    
